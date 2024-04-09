@@ -24,6 +24,11 @@ function handleDrawEvent()
                           document.getElementById('v1-y').value, 0]);
     v1.mul(20);
     drawVector(v1, "red");
+
+    let v2 = new Vector3([document.getElementById('v2-x').value, 
+                          document.getElementById('v2-y').value, 0]);
+    v2.mul(20);
+    drawVector(v2, "blue");
 }
 
 function clearBackground()
