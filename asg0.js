@@ -1,4 +1,7 @@
+// The rendering context we refer to throughout.
 let context = undefined;
+// The scalar ALL vectors are multiplied by before drawing,
+let zoomScalar = 20;
 
 // DrawRectangle.js
 function main()
@@ -22,12 +25,10 @@ function handleDrawEvent()
 
     let v1 = new Vector3([document.getElementById('v1-x').value, 
                           document.getElementById('v1-y').value, 0]);
-    v1.mul(20);
     drawVector(v1, "red");
 
     let v2 = new Vector3([document.getElementById('v2-x').value, 
                           document.getElementById('v2-y').value, 0]);
-    v2.mul(20);
     drawVector(v2, "blue");
 }
 
@@ -37,12 +38,10 @@ function handleDrawOperationEvent()
 
     let v1 = new Vector3([document.getElementById('v1-x').value, 
                           document.getElementById('v1-y').value, 0]);
-    v1.mul(20);
     drawVector(v1, "red");
 
     let v2 = new Vector3([document.getElementById('v2-x').value, 
                           document.getElementById('v2-y').value, 0]);
-    v2.mul(20);
     drawVector(v2, "blue");
 
     let v3 = undefined, v4 = undefined;
@@ -68,6 +67,16 @@ function handleDrawOperationEvent()
             drawVector(v3, "green");
             drawVector(v4, "green");
             break;
+        case "mag":
+            console.log(`Magnitude v1 = ${v1.magnitude()}`);
+            console.log(`Magnitude v2 = ${v2.magnitude()}`);
+            break;
+        case "norm":
+            v3 = v1.normalize();
+            v4 = v2.normalize();4
+            drawVector(v3, "green");
+            drawVector(v4, "green");
+            break;
         default:
             break;
     }
@@ -83,7 +92,7 @@ function clearBackground()
 function drawVector(vector, color)
 {
     let center = [context.canvas.width/2, context.canvas.height/2];
-    let vectorCorrected = [center[0]+vector.elements[0], center[1]-vector.elements[1]];
+    let vectorCorrected = [center[0]+vector.elements[0]*zoomScalar, center[1]-vector.elements[1]*zoomScalar];
 
     context.beginPath();
     context.moveTo(center[0], center[1]);
