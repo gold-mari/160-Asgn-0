@@ -31,6 +31,48 @@ function handleDrawEvent()
     drawVector(v2, "blue");
 }
 
+function handleDrawOperationEvent()
+{
+    clearBackground();
+
+    let v1 = new Vector3([document.getElementById('v1-x').value, 
+                          document.getElementById('v1-y').value, 0]);
+    v1.mul(20);
+    drawVector(v1, "red");
+
+    let v2 = new Vector3([document.getElementById('v2-x').value, 
+                          document.getElementById('v2-y').value, 0]);
+    v2.mul(20);
+    drawVector(v2, "blue");
+
+    let v3 = undefined, v4 = undefined;
+    let scalar = document.getElementById('opScalar').value;
+    switch (document.getElementById('opType').value) {
+        case "add":
+            v3 = v1.add(v2);
+            drawVector(v3, "green");
+            break;
+        case "sub":
+            v3 = v1.sub(v2);
+            drawVector(v3, "green");
+            break;
+        case "mul":
+            v3 = v1.mul(scalar);
+            v4 = v2.mul(scalar);
+            drawVector(v3, "green");
+            drawVector(v4, "green");
+            break;
+        case "div":
+            v3 = v1.div(scalar);
+            v4 = v2.div(scalar);
+            drawVector(v3, "green");
+            drawVector(v4, "green");
+            break;
+        default:
+            break;
+    }
+}
+
 function clearBackground()
 {
     context.rect(0, 0, context.canvas.width, context.canvas.height);

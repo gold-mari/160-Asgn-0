@@ -15,15 +15,31 @@
             <label for="v1-x">x</label>
             <input type="number" value=1 id="v1-x" name="v1-x">
             <label for="v1-y">y</label>
-            <input type="number" value=1 id="v1-y" name="v1-y">
-            <br>
+            <input type="number" value=1 id="v1-y" name="v1-y"><br>
+
             v2:
             <label for="v2-x">x</label>
             <input type="number" value=1 id="v2-x" name="v2-x">
             <label for="v2-y">y</label>
-            <input type="number" value=-1 id="v2-y" name="v1-y">
-            <br>
+            <input type="number" value=-1 id="v2-y" name="v1-y"><br>
+
             <input type="button" value="Draw" onclick="handleDrawEvent()"></button>
+
+            <br><br>
+
+            <label for="opType">Operation:</label>
+            <select value="add" id="opType" name="opType">
+                <option value="add">Add</option>
+                <option value="sub">Subtract</option>
+                <option value="mul">Multiply</option>
+                <option value="div">Divide</option>
+            </select>
+
+            <label for="opScalar">Scalar:</label>
+            <input type="number" value=1 id="opScalar" name="opScalar"><br>
+
+            <input type="button" value="Draw" onclick="handleDrawOperationEvent()"></button>
+
         </form>
 
         <script src="asg0.js"></script>
