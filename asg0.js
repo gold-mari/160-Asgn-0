@@ -13,25 +13,28 @@ function main()
     // Get the rendering context for 2DCG <- (2)
     context = canvas.getContext('2d');
 
-    drawBackground("black");
+    handleDrawEvent();
+}
 
-    let v1 = new Vector3([2.25, 2.25, 0]);
-    
+function handleDrawEvent()
+{
+    clearBackground();
+
+    let v1 = new Vector3([document.getElementById('v1-x').value, 
+                          document.getElementById('v1-y').value, 0]);
     v1.mul(20);
     drawVector(v1, "red");
 }
 
-function drawBackground(color)
+function clearBackground()
 {
     context.rect(0, 0, context.canvas.width, context.canvas.height);
-    context.fillStyle = color;
+    context.fillStyle = "black";
     context.fill();
 }
 
 function drawVector(vector, color)
 {
-    console.log(vector.elements + ` of the color ${color}`);
-
     let center = [context.canvas.width/2, context.canvas.height/2];
     let vectorCorrected = [center[0]+vector.elements[0], center[1]-vector.elements[1]];
 
