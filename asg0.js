@@ -80,6 +80,10 @@ function handleDrawOperationEvent()
         case "angle":
             console.log(angleBetween(v1, v2));
             break;
+        case "area":
+            let cross = Vector3.cross(v1, v2);
+            console.log(`Area of the triangle: ${cross.magnitude()/2}`);
+            break;
         default:
             break;
     }
