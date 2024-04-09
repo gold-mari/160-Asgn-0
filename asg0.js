@@ -77,6 +77,9 @@ function handleDrawOperationEvent()
             drawVector(v3, "green");
             drawVector(v4, "green");
             break;
+        case "angle":
+            console.log(angleBetween(v1, v2));
+            break;
         default:
             break;
     }
@@ -99,4 +102,16 @@ function drawVector(vector, color)
     context.lineTo(vectorCorrected[0], vectorCorrected[1]);
     context.strokeStyle = color;
     context.stroke();
+}
+
+function angleBetween(vector1, vector2)
+{
+    // Note that dot(v1, v2) = v1.magnitude() * v2.magnitude() * cos(alpha).
+    // Therefore, cos(alpha) = dot(v1, v2) / (v1.magnitude() * v2.magnitude()).
+    // And so: alpha = arccos(dot(v1, v2) / (v1.magnitude() * v2.magnitude())).
+    // ================
+
+    let alphaRadians = Math.acos(Vector3.dot(vector1, vector2) / (vector1.magnitude()*vector2.magnitude()));
+    // Convert to degrees.
+    return alphaRadians * (180 / Math.PI);
 }
